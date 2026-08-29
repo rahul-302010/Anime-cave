@@ -1,0 +1,16 @@
+{
+  "task_id": "qa_run",
+  "agent": "QAAgent",
+  "branch": "agent/qa/results-2026-08-29T18-10-18-667628Z",
+  "files": [
+    "docs/QA_REPORT.md",
+    "ci/results/qa_run-2026-08-29T18-10-18-667628Z.json",
+    "ci/results/run-2026-08-29T18-10-18-667628Z.json"
+  ],
+  "tests": {
+    "unit": true,
+    "smoke": true
+  },
+  "ts": "2026-08-29T18:10:18.667628Z",
+  "notes": "27/27 unit passed, smoke search->resolve->play->download passed, docs 21/21 PASS, zero critical gaps"
+}

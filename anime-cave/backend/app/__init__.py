@@ -1,0 +1,1 @@
+"""Anime Cave backend app."""

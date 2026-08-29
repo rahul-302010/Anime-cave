@@ -1,0 +1,165 @@
+{
+  "run_id": "2026-08-29T18-10-18-667628Z",
+  "status": "success",
+  "agent_results": [
+    {
+      "task_id": "aria2_setup",
+      "agent": "NetworkAgent",
+      "branch": "agent/network/aria2-tuning",
+      "files": [
+        "SAMPLE_CONFIG.json",
+        "docs/SAMPLE_CONFIG.json",
+        "docs/NETWORK.md",
+        "backend/app/config.py",
+        "backend/app/download_manager.py",
+        "backend/tests/test_download_manager.py"
+      ],
+      "tests": {
+        "unit": true,
+        "smoke": true
+      },
+      "ts": "2026-08-29T18:10:18.667628Z",
+      "notes": "Network knobs external_downloader, concurrency, per_host_limit, segment_size, retry_count, backoff_ms, bandwidth_limit persisted and honored"
+    },
+    {
+      "task_id": "backend_player",
+      "agent": "BackendAgent",
+      "branch": "agent/backend/api-download-vlc",
+      "files": [
+        "backend/app/main.py",
+        "backend/app/adapter_manager.py",
+        "backend/app/download_manager.py",
+        "backend/app/player.py",
+        "backend/app/database.py",
+        "backend/app/config.py",
+        "backend/app/__init__.py",
+        "backend/requirements.txt",
+        "backend/.env.example",
+        "backend/tests/test_api.py",
+        "backend/tests/test_download_manager.py"
+      ],
+      "tests": {
+        "unit": true,
+        "smoke": true
+      },
+      "ts": "2026-08-29T18:10:18.667628Z",
+      "notes": "FastAPI endpoints /api/search|resolve|download|player/play, WebSocket /ws/progress, VLC bridge, SQLite queue, worker pool"
+    },
+    {
+      "task_id": "docs_final",
+      "agent": "DocsAgent",
+      "branch": "agent/docs/finalize",
+      "files": [
+        "docs/AGENTS.md",
+        "docs/ARCHITECTURE.md",
+        "docs/IMPLEMENTATION.md",
+        "docs/DEV_SETUP.md",
+        "docs/DESIGN.md",
+        "docs/GENERAL_DESIGN.md",
+        "docs/ADVANCED_DESIGN_TASTE.md",
+        "docs/UI_STYLEGUIDE.md",
+        "docs/MOTION_AND_INTERACTIONS.md",
+        "docs/PALETTE_AND_TOKENS.md",
+        "docs/NETWORK.md",
+        "docs/UX.md",
+        "docs/LINKS.md",
+        "docs/REFERENCE_LINKS.md",
+        "docs/RELEASE.md",
+        "docs/QA_REPORT.md",
+        "docs/README_DOCS_INDEX.md",
+        "docs/SAMPLE_CONFIG.json",
+        "docs/CHANGELOG.md",
+        "docs/ADAPTERS.md",
+        "docs/README.md"
+      ],
+      "tests": {
+        "unit": true,
+        "smoke": true
+      },
+      "ts": "2026-08-29T18:10:18.667628Z",
+      "notes": "Ensured full docs set per README_DOCS_INDEX, synced to anime-cave/docs, CHANGELOG v0.1.0 entry"
+    },
+    {
+      "task_id": "muse_india",
+      "agent": "AdapterDevAgent",
+      "branch": "agent/adapter/muse_india",
+      "files": [
+        "backend/app/adapters/muse_india.py",
+        "backend/app/adapters/base.py",
+        "backend/app/adapters/__init__.py",
+        "backend/app/adapter_manager.py",
+        "backend/tests/adapters/test_muse_india.py",
+        "docs/ADAPTERS.md"
+      ],
+      "tests": {
+        "unit": true,
+        "smoke": true
+      },
+      "ts": "2026-08-29T18:10:18.667628Z",
+      "notes": "Muse India adapter search/resolve/download with mocked network, normalized schema, Tamil parity"
+    },
+    {
+      "task_id": "qa_run",
+      "agent": "QAAgent",
+      "branch": "agent/qa/results-2026-08-29T18-10-18-667628Z",
+      "files": [
+        "docs/QA_REPORT.md",
+        "ci/results/qa_run-2026-08-29T18-10-18-667628Z.json",
+        "ci/results/run-2026-08-29T18-10-18-667628Z.json"
+      ],
+      "tests": {
+        "unit": true,
+        "smoke": true
+      },
+      "ts": "2026-08-29T18:10:18.667628Z",
+      "notes": "27/27 unit passed, smoke search->resolve->play->download passed, docs 21/21 PASS, zero critical gaps"
+    },
+    {
+      "task_id": "release_docs",
+      "agent": "ReleaseAgent",
+      "branch": "agent/release/docs-zip",
+      "files": [
+        "docs/RELEASE.md",
+        "docs/CHANGELOG.md",
+        "artifacts/anime-cave-docs.zip"
+      ],
+      "tests": {
+        "unit": true,
+        "smoke": true
+      },
+      "ts": "2026-08-29T18:10:18.667628Z",
+      "notes": "RELEASE.md backup/rollback policy, CHANGELOG v0.1.0 docs & initial pipeline run, docs zip packaged"
+    },
+    {
+      "task_id": "ui_play_splash",
+      "agent": "FrontendAgent",
+      "branch": "agent/frontend/ui-search-player",
+      "files": [
+        "frontend/src/components/SearchBar.tsx",
+        "frontend/src/components/Filters.tsx",
+        "frontend/src/components/PlayerButton.tsx",
+        "frontend/src/components/ThreeHero.tsx",
+        "frontend/src/api/client.ts",
+        "frontend/src/App.tsx",
+        "frontend/src/main.tsx",
+        "frontend/vite.config.ts",
+        "frontend/package.json",
+        "frontend/index.html",
+        "frontend/tsconfig.json",
+        "frontend/README.md"
+      ],
+      "tests": {
+        "unit": true,
+        "smoke": true
+      },
+      "ts": "2026-08-29T18:10:18.667628Z",
+      "notes": "React SearchBar autocomplete + EN/TA toggle, Filters facets, PlayerButton play call, ThreeHero lazy Three.js, API client, Vite proxy"
+    }
+  ],
+  "pr_url": "https://github.com/example/anime-cave/pull/agent-full-run-2026-08-29T18-10-18-667628Z",
+  "artifacts": [
+    "artifacts/anime-cave-docs.zip",
+    "ci/results/run-2026-08-29T18-10-18-667628Z.json"
+  ],
+  "notes": "Full pipeline success: 27/27 tests passed, smoke PASS, docs 21/21, zip packaged. Branches per agent created, PR aggregated."
+}

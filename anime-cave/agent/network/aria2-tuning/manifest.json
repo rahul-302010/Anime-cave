@@ -1,0 +1,19 @@
+{
+  "task_id": "aria2_setup",
+  "agent": "NetworkAgent",
+  "branch": "agent/network/aria2-tuning",
+  "files": [
+    "SAMPLE_CONFIG.json",
+    "docs/SAMPLE_CONFIG.json",
+    "docs/NETWORK.md",
+    "backend/app/config.py",
+    "backend/app/download_manager.py",
+    "backend/tests/test_download_manager.py"
+  ],
+  "tests": {
+    "unit": true,
+    "smoke": true
+  },
+  "ts": "2026-08-29T18:10:18.667628Z",
+  "notes": "Network knobs external_downloader, concurrency, per_host_limit, segment_size, retry_count, backoff_ms, bandwidth_limit persisted and honored"
+}
