@@ -34,7 +34,15 @@ export const api = {
   subtitleUrl: (fileName) => `${BASE}/api/subtitles/${encodeURIComponent(fileName)}`,
   download: (url, fileName, quality) => request("/api/downloads/request", {
     method: "POST",
-    body: JSON.stringify({ url, fileName, quality }),
+    body: JSON.stringify({ url, fileName, quality, sourceType: "local" }),
+  }),
+  downloadOwned: (animeName, episodeNumber, version, quality) => request("/api/downloads/request", {
+    method: "POST",
+    body: JSON.stringify({ animeName, episodeNumber, version, quality, sourceType: "local" }),
+  }),
+  downloadStructured: (animeName, episodeNumber, version, quality, url) => request("/api/downloads/request", {
+    method: "POST",
+    body: JSON.stringify({ animeName, episodeNumber, version, quality, url, sourceType: "local" }),
   }),
   deleteDownload: (fileName) => request(`/api/downloads/${encodeURIComponent(fileName)}`, { method: "DELETE" }),
 };
