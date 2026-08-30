@@ -61,7 +61,8 @@ export function getEpisodeCatalog(animeId, media) {
       const relativeFile = existingFile ? path.relative(existingFile.includes(downloadedDir) ? downloadedDir : localDir, existingFile).replace(/\\/g,"/") : null;
       const localFileName = relativeFile || structured720.replace(/\\/g,"/"); // default to structured for new downloads
 
-      // Determine source type - strict source-based
+      // Determine source type - STRICT: version-based, not alternating (fixes user confusion)
+      // sub/tamil -> YouTube (Muse India embed), dub -> Crunchyroll external, local if file exists
       let source;
       if (hasLocal) {
         // LOCAL ONLY - VLC player, not YouTube/Crunchyroll
@@ -80,29 +81,30 @@ export function getEpisodeCatalog(animeId, media) {
             ...(v.key === "tamil" ? [{ lang: "ta", label: "Tamil", url: `/api/subtitles/${animeId}_${v.key}_ep${i}_ta.vtt` }] : [])
           ]
         };
-      } else if (i % 2 === 0) {
-        // YOUTUBE - strict Muse India validated
-        source = {
-          type: "youtube",
-          videoId: ytId,
-          // required format per spec
-          embedUrl: `https://www.youtube.com/embed/${ytId}`,
-          watchUrl: `https://www.youtube.com/watch?v=${ytId}`,
-          url: `https://www.youtube.com/watch?v=${ytId}`,
-          channel: MUSE_CHANNEL,
-          query: muse.query,
-          validated: muse.validated,
-          note: `Muse India validated • Query: "${muse.query}" • Channel must be "${MUSE_CHANNEL}" • Title contains "Episode"`,
-          subtitles: [{ lang: "en", label: "English (YouTube CC)" }]
-        };
-      } else {
-        // CRUNCHYROLL - external only, never embedded
+      } else if (v.key === "dub") {
+        // DUB -> Crunchyroll external only (never embed)
         const crUrl = `${CRUNCHYROLL_BASE}${encodeURIComponent(title + " episode " + i + " " + v.label)}`;
         source = {
           type: "crunchyroll",
           url: crUrl,
           searchUrl: crUrl, // backward compat
           note: "Opens in external browser - never embedded per Crunchyroll policy"
+        };
+      } else {
+        // SUB / TAMIL -> YouTube Muse India validated embed (all episodes same source, no alternating confusion)
+        source = {
+          type: "youtube",
+          videoId: ytId,
+          // required format per spec
+          embedUrl: `https://www.youtube.com/embed/${ytId}?rel=0&modestbranding=1`,
+          watchUrl: `https://www.youtube.com/watch?v=${ytId}`,
+          url: `https://www.youtube.com/watch?v=${ytId}`,
+          channel: MUSE_CHANNEL,
+          query: muse.query,
+          validated: muse.validated,
+          embeddable: true,
+          note: `Muse India validated • Query: "${muse.query}" • Channel must be "${MUSE_CHANNEL}" • Title contains "Episode"`,
+          subtitles: [{ lang: "en", label: "English (YouTube CC)" }]
         };
       }
 
