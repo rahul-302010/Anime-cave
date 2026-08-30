@@ -1,0 +1,14 @@
+node_modules
+dist
+downloads/*.mp4
+downloads/*.mkv
+!downloads/.gitkeep
+.electron
+.env
+local_content/videos/*.mp4
+!local_content/videos/.gitkeep
+.DS_Store
+*.log
+coverage
+.opencode
+query

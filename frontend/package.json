@@ -1,0 +1,27 @@
+{
+  "name": "anime-cave-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5173 --host",
+    "build": "vite build",
+    "preview": "vite preview --port 5173",
+    "electron": "electron ../electron/main.js",
+    "electron:dev": "concurrently \"npm run dev\" \"wait-on http://localhost:5173 && electron ../electron/main.js\""
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.23.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^5.4.2",
+    "concurrently": "^8.2.2",
+    "wait-on": "^7.2.0",
+    "electron": "^30.0.0"
+  }
+}
