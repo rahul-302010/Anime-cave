@@ -151,7 +151,15 @@ export default function SearchBar({ onResults, lang, onLangChange }: Props) {
                 setQ(r.title)
               }}
             >
-              <img src={r.thumbnail} alt="" style={{ width: 32, height: 48, borderRadius: 6, objectFit: 'cover', background: '#12121F' }} />
+              <img
+                src={r.thumbnail || `https://placehold.co/32x48/1E1E32/EDE9FE?text=${encodeURIComponent(r.title.slice(0,2))}`}
+                alt=""
+                style={{ width: 32, height: 48, borderRadius: 6, objectFit: 'cover', background: '#12121F' }}
+                onError={(e) => {
+                  const t = e.target as HTMLImageElement
+                  if (!t.src.includes('placehold.co')) t.src = `https://placehold.co/32x48/1E1E32/EDE9FE?text=${encodeURIComponent(r.title.slice(0,2))}`
+                }}
+              />
               <div>
                 <div style={{ fontSize: 14, fontWeight: 600, color: '#EDE9FE' }}>{r.title}</div>
                 {r.title_tamil && <div style={{ fontSize: 12, color: '#A1A1B5', lineHeight: 1.6 }}>{r.title_tamil}</div>}

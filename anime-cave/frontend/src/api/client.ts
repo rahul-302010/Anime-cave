@@ -2,7 +2,7 @@
  * API client for Anime Cave backend.
  * All endpoints bind to 127.0.0.1:8000 per ARCHITECTURE.md
  */
-const BASE = import.meta.env.VITE_API_BASE || ''
+const BASE = (import.meta as any).env?.VITE_API_BASE || ''
 
 export type SearchResult = {
   id: string
